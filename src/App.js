@@ -1,7 +1,13 @@
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import NavigationBar from './components/MainLayout/NavigationBar';
+import PokeInfo from './components/UI/PokeInfo';
 function App() {
   return (
     <div className="App">
-      <h1>Hello</h1>
+      <Router>
+        <NavigationBar/>
+        <Route path="/" component={PokeInfo} exact/>
+      </Router>
     </div>
   );
 }
