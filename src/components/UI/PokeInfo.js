@@ -1,7 +1,8 @@
-import { Box, CircularProgress } from "@material-ui/core"
+import { Box, CircularProgress, Grid } from "@material-ui/core"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import {POKEMON_API_URL as apiUrl, POKEMON_IMAGE_URL as pokemonImage} from '../../config'
+import PokemonCard from "./PokemonCard"
 
 const PokeInfo = () => {
     const [pokemonData, setPokemonData] = useState(null)
@@ -39,9 +40,13 @@ const PokeInfo = () => {
 
     return (
         <Box>
-            {pokemonData ? pokemonData.map(pokemon=>{
-                return <h1>{pokemon.name}</h1>
-            }) : <CircularProgress style={{marginTop: 100}} /> }
+            {pokemonData ? 
+            <Grid container spacing={2}>
+                {pokemonData.map(pokemon=>{
+                    return <PokemonCard pokemon={pokemon} image={pokemon.url}/>
+                })}
+            </Grid>
+             : <CircularProgress style={{marginTop: 100}} /> }
         </Box>
     )
 }
